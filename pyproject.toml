@@ -7,6 +7,7 @@ requires-python = ">=3.13"
 dependencies = [
     "asttokens==3.0.1",
     "beautifulsoup4==4.14.3",
+    "captum==0.9.0",
     "click==8.4.0",
     "colorama==0.4.6",
     "comm==0.2.3",
@@ -38,6 +39,7 @@ dependencies = [
     "nest-asyncio==1.6.0",
     "networkx==3.6.1",
     "nltk==3.9.4",
+    "np==1.0.2",
     "numpy==2.4.5",
     "packaging==26.2",
     "pandas==3.0.3",
