@@ -24,7 +24,7 @@ Both assisted groups saw the same emails as the control group, but with suspicio
 
 Based on **161 participants** (control: 52, LIME: 53, IG/Word2Vec: 56).
 
-![Study Results](distribution_dashboard.png)
+![Study Results](helpfulness.png)
 
 - **Accuracy & detection.** Both LIME and IG raised accuracy from **63%** (control) to roughly **79%**, and more than doubled sensitivity (d′: `0.64 → ~1.45`), meaning assisted users were far better at separating signal from noise.
 - **Speed.** Only IG meaningfully sped up decisions, cutting latency from **14.10s** to **9.66s**. LIME showed no significant speed benefit over control.
