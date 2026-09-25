@@ -2,7 +2,7 @@
 
 > Can explainable AI make ordinary people better at spotting phishing emails? This study compares two XAI techniques, delivered as inline syntax highlighting, against an unassisted control group.
 
-Phishing remains one of the most effective attack vectors precisely because it targets people, not machines. A classifier can flag a suspicious email, but a raw "phishing / not phishing" verdict does little to teach a human *why* something is off. This project investigates whether **explaining** a model's reasoning, by highlighting the exact words that drove its decision, helps people make faster, more accurate, and better-calibrated judgments.
+Phishing remains one of the most effective attack vectors precisely because it targets people, not machines. A classifier can flag a suspicious email, but a raw "phishing / not phishing" verdict does little to teach a human _why_ something is off. This project investigates whether **explaining** a model's reasoning, by highlighting the exact words that drove its decision, helps people make faster, more accurate, and better-calibrated judgments.
 
 We train two phishing classifiers, attach a different explainability method to each, and run a controlled human study where participants classify emails with (or without) that assistance.
 
@@ -12,17 +12,19 @@ We train two phishing classifiers, attach a different explainability method to e
 
 Participants were split into three conditions:
 
-| Group | Model | XAI method | Assistance shown |
-| --- | --- | --- | --- |
-| `control` | — | none | Plain email text |
-| `lime` | TF-IDF + LinearSVC | LIME | Words highlighted by LIME weights |
-| `word2vec` | BiLSTM + Word2Vec | Integrated Gradients (IG) | Words highlighted by IG attributions |
+| Group      | Model              | XAI method                | Assistance shown                     |
+| ---------- | ------------------ | ------------------------- | ------------------------------------ |
+| `control`  | —                  | none                      | Plain email text                     |
+| `lime`     | TF-IDF + LinearSVC | LIME                      | Words highlighted by LIME weights    |
+| `word2vec` | BiLSTM + Word2Vec  | Integrated Gradients (IG) | Words highlighted by IG attributions |
 
 Both assisted groups saw the same emails as the control group, but with suspicious tokens highlighted according to their model's explanation.
 
 ## Key findings
 
 Based on **161 participants** (control: 52, LIME: 53, IG/Word2Vec: 56).
+
+![Study Results](distribution_dashboard.png)
 
 - **Accuracy & detection.** Both LIME and IG raised accuracy from **63%** (control) to roughly **79%**, and more than doubled sensitivity (d′: `0.64 → ~1.45`), meaning assisted users were far better at separating signal from noise.
 - **Speed.** Only IG meaningfully sped up decisions, cutting latency from **14.10s** to **9.66s**. LIME showed no significant speed benefit over control.
@@ -34,14 +36,14 @@ Based on **161 participants** (control: 52, LIME: 53, IG/Word2Vec: 56).
 
 ## Project structure
 
-| Path | Description |
-| --- | --- |
-| `RM.ipynb` | Main pipeline: EDA, preprocessing, augmentation, model training (LIME & IG), evaluation, and generation of the highlighted email explanations. |
-| `analytics.ipynb` | Analysis of the human study: per-participant metrics, descriptive statistics, ANOVA, post-hoc tests, and visualizations. |
-| `Phishing_Email.csv` | Source corpus of phishing and legitimate emails used to train the classifiers. |
-| `participant_input.csv` | Collected human study responses (verdicts, response times, confidence, helpfulness) per participant. |
-| `distribution_dashboard.png` | Summary dashboard of the study results. |
-| `pyproject.toml` | Project metadata and pinned dependencies. |
+| Path                         | Description                                                                                                                                    |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `RM.ipynb`                   | Main pipeline: EDA, preprocessing, augmentation, model training (LIME & IG), evaluation, and generation of the highlighted email explanations. |
+| `analytics.ipynb`            | Analysis of the human study: per-participant metrics, descriptive statistics, ANOVA, post-hoc tests, and visualizations.                       |
+| `Phishing_Email.csv`         | Source corpus of phishing and legitimate emails used to train the classifiers.                                                                 |
+| `participant_input.csv`      | Collected human study responses (verdicts, response times, confidence, helpfulness) per participant.                                           |
+| `distribution_dashboard.png` | Summary dashboard of the study results.                                                                                                        |
+| `pyproject.toml`             | Project metadata and pinned dependencies.                                                                                                      |
 
 ## Methodology
 
@@ -92,4 +94,4 @@ Then run the notebooks in this order:
 
 ## Takeaway
 
-Providing an explanation, of either kind, substantially improves people's phishing detection and confidence calibration. The *type* of explanation matters mainly for speed: Integrated Gradients let participants reach equally accurate decisions noticeably faster than LIME or no assistance at all.
+Providing an explanation, of either kind, substantially improves people's phishing detection and confidence calibration. The _type_ of explanation matters mainly for speed: Integrated Gradients let participants reach equally accurate decisions noticeably faster than LIME or no assistance at all.
